@@ -13,7 +13,7 @@ else
 			var  proiz = 1;
 			var m, four=1, factn=1, i, fact = 1, s=2*n+1, ss;
 			m = 2 * n;							//2n
-			if (m == 0) continue;
+			if (n == 0) { otv=x; continue;}
 			for (i = 1; i <= m; i++)
 				fact *= i;						//2n!
 			for (m = n; m > 0; m--)
@@ -24,8 +24,8 @@ else
 			factn*=factn;
 			for (ss = s; ss > 0; ss--)
 				proiz = proiz*x;
-			otv += fact*proiz / (four*factn*s);
-			alert(otv);
+			otv += (fact*proiz) / (four*factn*s);
 		}
+		alert(otv);
 	}
 }
