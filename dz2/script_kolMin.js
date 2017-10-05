@@ -13,4 +13,4 @@ else day = String(day);
 
 var endOfDay = new Date(year+"-"+month+"-"+day+"/23:59:00");
 var mED = endOfDay.getTime();
-alert("To the end of day: " + parseInt((mED-mTD)/1000/60+1) + " minuts");	//минуты
+alert("To the end of day: " + Math.round((mED-mTD)/1000/60+1) + " minuts");	//минуты
