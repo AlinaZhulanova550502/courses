@@ -2,7 +2,8 @@ printMenu = function()
 {
 	alert(
 	"1 - print all workers;\n2- add new worker;\n3 - dismiss a worker;\n" + 
-	"4 - see workers by salary and see summary salary;\n5 - see person with max, min salaries; awerage salary"
+	"4 - see workers by salary and see summary salary;\n5 - see person with max, min salaries; awerage salary\n"+
+	"6 - see info"
 	);
 }
 
@@ -62,15 +63,32 @@ var workersArr = new Array();									//массив сотрудников
 
 workersArr[0] = new Object();									//для начала создадим и инициализируем 3 сотрудника в этом массиве
 copyWorker(workersArr[0], worker);
-workersArr[0].init("Vasya", 33, "a", 600, 4); 
+workersArr[0].init("Vasilii", 33, "a", 600, 4); 
 workersArr[1] = new Object();
 copyWorker(workersArr[1], worker);
-workersArr[1].init("Petya", 20, "b", 480, 1); 
+workersArr[1].init("Petr", 20, "b", 480, 1); 
 workersArr[2] = new Object();
 copyWorker(workersArr[2], worker);
 workersArr[2].init("Olga", 59, "c", 1800, 114); 
+workersArr[3] = new Object();
+copyWorker(workersArr[3], worker);
+workersArr[3].init("Alina", 19, "b", 890, 3); 
+workersArr[4] = new Object();
+copyWorker(workersArr[4], worker);
+workersArr[4].init("Nikita", 40, "a", 560, 15); 
+workersArr[5] = new Object();
+copyWorker(workersArr[5], worker);
+workersArr[5].init("Oksana", 29, "a", 327, 23); 
+workersArr[6] = new Object();
+copyWorker(workersArr[6], worker);
+workersArr[6].init("Valentin", 25, "a", 834, 934); 
+workersArr[7] = new Object();
+copyWorker(workersArr[7], worker);
+workersArr[7].init("Yuryi", 18, "c", 338, 2); 
+workersArr[8] = new Object();
+copyWorker(workersArr[8], worker);
+workersArr[8].init("Oleg", 61, "c", 1982, 89); 
 
-//workersArr.forEach(function(elem){elem.print()});				//вывод на экран
 
 var bookkeeping = {												//объект бухгалтерия
 	workers: workersArr,										//сотрудники
@@ -107,24 +125,46 @@ var bookkeeping = {												//объект бухгалтерия
 
 		var max, min;
 		max=min=this.workers[0].salary;
+		var maxPers = this.workers[0];
+		var minPers = this.workers[0];
 		for(i=0; i<=ind; i++)
 		{
-			if (this.workers[i].salary<min) min=this.workers[i];
-			else if (this.workers[i].salary>max) max=this.workers[i];
+			if (this.workers[i].salary<min) minPers=this.workers[i];
+			else if (this.workers[i].salary>max) maxPers=this.workers[i];
 		}
-		console.log("Worker with max salary: "); max.print();
-		console.log("Worker with min salary: "); min.print();
-	}	
+		console.log("Worker with max salary: "); maxPers.print();
+		console.log("Worker with min salary: "); minPers.print();
+	},	
+	departmentInfo: function(dep)
+	{
+		var arrDep = this.workers.filter(function(elem){if (elem.department==dep) return elem});
+		var sum = arrDep.reduce(function(sum, current){return sum+current.salary}, 0);
+		console.log("summary department's " + dep +" salary: " + sum);										//суммарная зп отдела
+		var ind = arrDep.reduce(function(ptev, current, i){return i}, 0);
+		console.log("average department's "+ dep + " salary: " + Math.round(sum/(ind+1)));					//средняя зп отдела
+		console.log("number of workers: "+ (ind+1));
+		var sumAge = arrDep.reduce(function(sum, current){return sum+current.age}, 0);
+		console.log("average department's "+ dep + " age: " + Math.round(sumAge/(ind+1)));	
+		var max=arrDep[0].experience;
+		var maxPers = arrDep[0];
+		for(i=0; i<=ind; i++)
+		{
+			if (arrDep[i].experience>max) maxPers=arrDep[i];
+		}
+		console.log("Worker with max experience: " + maxPers.name); 			
+	},
+	workInfo: function()
+	{
+		this.departmentInfo("a");
+		this.departmentInfo("b");
+		this.departmentInfo("c");
+	}
 
 }
 
-
-//bookkeeping.print();
-
-
 menu = function(arg){
 if (arg==1) {bookkeeping.print(); }
-if (arg==2) 
+else if (arg==2) 
 	{
 		var workerNew =
 		{
@@ -146,8 +186,8 @@ if (arg==3)
 		bookkeeping.print(); 
 	};
 if (arg==4)  {bookkeeping.printSalarySort()};
-//{console.log("error")};
 if (arg==5) {bookkeeping.minMax();}
+if (arg==6) {bookkeeping.workInfo();}
 }
 
 	printMenu();
