@@ -1,45 +1,53 @@
-//создать массив из имен и городов
+initialise = function(name, age, city)		//инициализация полей человека
+	{
+		this.name = name;
+		this.age = age; 
+		this.city = city;
+	}
+
+printing = function()						//вывод на печать человека
+	{
+		console.log("Name: " + this.name);
+		console.log("City: " + this.city);
+		console.log("Age: " + this.age);
+	}
+
+copyPerson = function(obj2, obj1)
+	{				
+		obj2.init = obj1.init;
+		obj2.print = obj1.print;
+	}
+
 
 var arr = new Array("Anna", "Nikita", "Artiom", "Natalia", "Ivan", "Nikolai", "Maria", "Konstantin", "<-names",
 					"Grodno", "Minsk", "Brest", "Boston", "<-cities");
-var N = arr.indexOf("<-names");	//кол-во имен
-var M = arr.indexOf("<-cities") - N - 1;
+var N = arr.indexOf("<-names");					//кол-во имен
+var M = arr.indexOf("<-cities") - N - 1;		//кол-во городов
 
-//сгенерировать массив из N случайных человек
+console.log(arr);								//вывод исходного массива
 
-var person = new Object();
-print = function(){
-	 console.log(this.name);
-	 console.log(this.city);
-	 console.log(this.age);
-	}
+var person = {	
+	init: initialise,
+	print: printing
+}
 
-var people = new Array(N);
+var people = new Array(N);						
 
-for (var i=0; i<N; i++)
+for (var i=0; i<N; i++)							//сгенерировать массив из N случайных человек
 	{
-		people[i] = Object();
+		people[i] = new Object();
+		copyPerson(people[i], person);
 
-		var nameIndex = 0;
-		nameIndex = Math.round(Math.random()*(N-1));
-		people[i].name = arr[nameIndex];
+		var name = arr[Math.round(Math.random()*(N-1))];
+		var city = arr[Math.ceil(N+Math.random()*(M-1))];
+		var age =  Math.round(Math.random()*80);
 
-		var cityIndex = 0;
-		while(1){
-			if (cityIndex<=N) cityIndex = Math.round(Math.random()*(M-1));
-			else break;
-		}
-		people[i].city = arr[cityIndex];
-
-		people[i].age =  Math.round(Math.random()*80);
-		people[i].print = person.print;
+		people[i].init(name, age, city); 
 	}
-	//строка из массива под рандомным номером с границами
-
 
 people.sort(function compareNumeric(a, b) {
   if (a.age < b.age) return 1;
   if (a.age > b.age) return -1
 });
 
-people.forEach(function(item, i, people){item.print()});
+people.forEach(function(elem){elem.print()});
