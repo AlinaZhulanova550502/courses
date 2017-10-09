@@ -1,9 +1,8 @@
 printMenu = function()
 {
 	alert(
-	"1 - print all workers;\n2- add new worker;\n3 - dismiss a worker;\n" + 
-	"4 - see workers by salary and see summary salary;\n5 - see person with max, min salaries; awerage salary\n"+
-	"6 - see info"
+	"1 - print house;\n2- add new person;\n3 - evict a person;\n" + 
+	"4 - crear a flat;\n5 - see bills"
 	);
 }
 
@@ -11,6 +10,8 @@ copyObj = function(obj2, obj1)
 {				
 	obj2.init = obj1.init;
 	obj2.print = obj1.print;
+	if (obj1.billFlat != undefined) obj2.billFlat = obj1.billFlat;
+	if (obj1.plusBill != undefined) obj2.plusBill = obj1.plusBill;
 }
 
 copyArr = function(arr2, arr1)
@@ -37,20 +38,30 @@ printing = function()
 	this.people.forEach(function(elem){elem.print()})
 }
 
+
 billFlat = function()
 {
 	var kolChel=0;
 	kolChel = this.people.length;
-	kolChel -= ithis.people.filter(function(elem){if (elem.age<18) return elem}).length;
+	kolChel = kolChel - this.people.filter(function(elem){if (elem.age<18) return elem}).length;
+	if (kolChel<0) return;
 	sumOne = Math.ceil(this.bill/kolChel);
-	for (i=0; i<this.people.length; i++)
-		if (this.people[i].age >= 18) this.people[i].bill = sumOne;
+	this.people.forEach(function(elem){if (elem.age >= 18) elem.bill = sumOne;})
 }
 
-/*plusBill = function()
+plusBill = function(kommmunizm)
 {
-
-}*/
+	var kolChel=0;
+	kolChel = this.people.length;
+	kolChel = kolChel - this.people.filter(function(elem){if (elem.age<18) return elem}).length;
+	if (kolChel<=0)
+	{
+		kommmunizm += this.bill;
+		this.bill=0;
+		return kommmunizm;
+	}
+	return 0
+}
 
 initPerson = function(name, age)
 {
@@ -123,7 +134,8 @@ peopleFour[1].init("Nurlan", 37);
 var flat = {
 	init: initialise,
 	print: printing,
-	billFlat: billFlat
+	billFlat: billFlat,
+	plusBill: plusBill
 }
 
 var flats = new Array();
@@ -147,7 +159,7 @@ flats[4].init(38, 11, arr);
 
 var house = {												
 	flats: flats,										
-	add: function(number, person) {										
+	add: function(number, person) {														//вселить									
 		console.log("ADD A PERSON ");
 		if ((number<0) || (number>this.flats.length))
 		{
@@ -161,7 +173,7 @@ var house = {
 		console.log("PRINT HOUSE: ");
 		this.flats.forEach(function(elem){elem.print()});
 	},
-	evict: function(nameex) {									
+	evict: function(nameex) {															//выгнать человека
 		console.log("EVICT A PERSON: " + nameex);
 		var index = null;
 		var i;
@@ -179,7 +191,7 @@ var house = {
 		}		
 		else console.log("Wasn't such lodger at house");
 	},
-	clear: function(number)
+	clear: function(number)																//выгнать семью из квартиры
 	{
 		console.log("CLEAR A FLAT");
 		if ((number<0) || (number>this.flats.length))
@@ -192,57 +204,53 @@ var house = {
 	},
 	bills: function(account)
 	{
-		var allSquare = this.flats.reduce(function(sum, current){return sum+current.square}, 0);
+		var allSquare = this.flats.reduce(function(sum, current){return sum+current.square}, 0);	//посчитать площадь дома
 		for(var i=0; i<this.flats.length; i++)
-			this.flats[i].bill = Math.ceil(this.flats[i].square/allSquare*account);
-		this.flats.forEach(function(elem, i){elem.billFlat});
-		this.print();
+			this.flats[i].bill = Math.ceil(this.flats[i].square/allSquare*account);		//посчитать налог по площади для каждой квартиры
+
+		this.flats.forEach(function(elem,){elem.billFlat()});							//расчет налога между жителями квартиры
+
+		var kommunizm = 0;
+		this.flats.forEach(function(elem, i){kommunizm=elem.plusBill(kommunizm)});		//подсчёт налога, который платят за несовершеннолетних и пустые кв
+
+		var arrPaers = new Array();
+		arrPaers = this.flats.filter(function(elem){if (elem.bill>0) return elem});		//квартиры-плательщики
+		plusKommunizm = Math.ceil(kommunizm/arrPaers.length);							//величина надбавки каждой квартире за других
+		arrPaers.forEach(function(elem){elem.bill += plusKommunizm});					//надбавить каждой квартире за других
+		arrPaers.forEach(function(elem){elem.billFlat()});								//надбавить для каждого человека за других/пустые кв
+
+		arrPaers.forEach(function(elem){elem.print()});									//вывод результата
 	}
 }
 
-/*menu = function(arg){
-if (arg==1) {bookkeeping.print(); }
+menu = function(arg){
+if (arg==1) {house.print(); }
 else if (arg==2) 
 	{
-		var workerNew =
+		number = prompt("Enter number of flat: ");
+		var bomzh =
 		{
- 			init: initialise,
- 			print: printing
+ 			init: initPerson,
+			print: printPerson
 		}
-		name = prompt("Enter new worker's name: ");
-		age = parseInt(prompt("Enter new worker's age: "));
-		department = prompt("Enter new worker's department:");
-		salary = parseInt(prompt("Enter new worker's salary:"));
-		workerNew.init(name, age, department, salary, 0);
-		bookkeeping.add(workerNew);
-		bookkeeping.print(); 
+		name = prompt("Enter new name: ");
+		age = parseInt(prompt("Enter new age: "));
+
+		bomzh.init(name, age);
+		house.add(number, bomzh);
+		house.print(); 
 	};
 if (arg==3) 
 	{
-		name = prompt("Enter worker's name: ");
-		bookkeeping.dismiss(name); 
-		bookkeeping.print(); 
+		name = prompt("Enter name: ");
+		house.evict(name); 
+		house.print(); 
 	};
-if (arg==4)  {bookkeeping.printSalarySort()};
-if (arg==5) {bookkeeping.minMax();}
-if (arg==6) {bookkeeping.workInfo();}
+if (arg==4) {number = prompt("Enter number of flat: "); house.clear(number)};
+if (arg==5) {sum = prompt("Enter bill of house: "); house.bills(sum);}
 }
 
 	printMenu();
 	arg = prompt("Enter your choise: ");
 	menu(arg);
-	*/
-
-	//house.print();
-
-	/*bomzh = new Object();							
-	copyObj(bomzh, person);
-	bomzh.init("Bomzhara", 49); 
-	house.add(1, bomzh);
-	*/
-
-	//house.evict("Samoubiica");
-
-	//house.clear(2);
-
-	house.bills(9843);
+	
