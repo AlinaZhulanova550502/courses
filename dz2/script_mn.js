@@ -6,14 +6,13 @@ while(1)
 	if (isNaN(arr[i])) break;
 	i++;
 }
-arr.pop(arr[i]);					
-var last = arr.indexOf(arr[i-1]);
+arr.pop();					
+var last = i-1;
 x = prompt("vvedite x");
 if (isNaN(parseFloat(x))) alert("error");
 else
 {
 	var rez=0;
-	for (var i=0; i<=last; i++)
-	rez += parseFloat(arr[i] * Math.pow(x, i));
+	for (i=0; i<=last; i++) rez += arr[i] * Math.pow(x, i);
 }
 alert(rez);
