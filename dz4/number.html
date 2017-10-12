@@ -5,9 +5,8 @@
 
 	<body>
 		<script> number = prompt("enter number");
-				 str=number.match(/(*+375[ -)(]*2[45]|9[^0]|33|44[)() -]*\d[ -]*\d[ -]*\d[ -]*\d[ -]*\d[ -]*\d[ -]*\d)/)[0];
-
-				 console.log(str);
+				 ref=number.match(/\+375[\s-]*2[459]|33|44[\s-]*\d{7}/);
+				 if (ref==null) console.log(null); else console.log(ref[0]);
 		</script>
 	</body>
 </html>
