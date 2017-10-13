@@ -5,8 +5,13 @@
 
 	<body>
 		<script> number = prompt("enter number");
-				 ref=number.match(/\+375[\s-]*2[459]|33|44[\s-]*\d{7}/);
-				 if (ref==null) console.log(null); else console.log(ref[0]);
+			ref=number.match(/\(*\+375[\s-\)\(]*([234][3459])[\s-\)]*\d[\s-]*\d[\s-]*\d[\s-]*\d[\s-]*\d[\s-]*\d[\s-]*\d[\s-]*/);
+			if (ref==null) console.log(null); else 
+			{
+				code=ref[1];
+				if (code!=33 & code!=44 & code!=24 & code!=25 & code!=29) console.log("code isn't correct");
+				else console.log(ref[0]);
+			}
 		</script>
 	</body>
 </html>
