@@ -38,7 +38,7 @@ var contryObj = {
 		table.appendChild(line);
 		dn.innerText = this.name;
 		dc.innerText = this.code;
-		dp.innerText = this.population;
+		dp.innerText = this.population + "000";
 		df.innerHTML = imgs[i];
 	}
 }
