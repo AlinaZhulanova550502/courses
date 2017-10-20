@@ -1,0 +1,14 @@
+body {
+	color: red;
+}
+
+div {
+	color: blue;
+	background: #f0f0f0;
+	text-decoration: underline;
+	font-family: "";		/*задание названия шрифта*/
+	font-weight: 20;
+	font-style: italic;
+	font-size: 18px;
+	line-height-height: 20px;
+}

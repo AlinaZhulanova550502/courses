@@ -58,17 +58,24 @@ var generatePerson = function(i, purchaise)
 
 var div = document.getElementById("div");
 var i=0;							//для добавления в массив людей
+
 function showPurcher(i)
 {
 	generatePerson(++i)					//новый человек
 	var str = people[i].name + " из города " + people[i].city  + " купил(a) товар " + people[i].purchaise.name + " в количестве " + people[i].purchaise.count + " общей стоимостью " + people[i].purchaise.count*people[i].purchaise.price;
 	console.log(str);
 
-	div.innerHTML += '<div id="ndiv"></div><br>';
+	div.innerHTML += '<div id="ndiv"></div>';
 	var ndiv = document.getElementById("ndiv");
 	ndiv.innerHTML += '<br>';
 	ndiv.innerText = ndiv.outerText + str;
 }
 
-setInterval(showPurcher, 2000);	//показывать в течение рандомного промежутка времени
-//setInterval(showPurcher, Math.round(Math.random()*2000));	//показывать в течение рандомного промежутка времени
+function AccoutAndShow()				//показывать в течение рандомного интервала ????
+{
+	var time=4001;
+	while ((time<2000)||(time>4000)) time = Math.round(Math.random()*20000);
+	console.log(time);
+	setTimeout(showPurcher, time);
+}
+setInterval(AccoutAndShow, 1000);	//подождать секунду и показывать нового человека ??? задержка между людьми
