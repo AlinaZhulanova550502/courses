@@ -65,10 +65,9 @@ function showPurcher(i)
 	var str = people[i].name + " из города " + people[i].city  + " купил(a) товар " + people[i].purchaise.name + " в количестве " + people[i].purchaise.count + " общей стоимостью " + people[i].purchaise.count*people[i].purchaise.price;
 	console.log(str);
 
-	div.innerHTML += '<div id="ndiv"></div>';
-	var ndiv = document.getElementById("ndiv");
-	ndiv.innerHTML += '<br>';
-	ndiv.innerText = ndiv.outerText + str;
+	var textElem = document.createTextNode(str);
+	div.innerHTML += '<br>';
+	div.appendChild(textElem);
 }
 
 function AccoutAndShow()				//показывать в течение рандомного интервала ????

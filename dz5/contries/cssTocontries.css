@@ -1,0 +1,17 @@
+table {
+		color: black;
+		width: 50%; 		/* Ширина таблицы */
+    	background: rosybrown; /* Цвет фона таблицы */
+    	color: darkred; 		/* Цвет текста */
+    	border-spacing: 2px; /* Расстояние между ячейками */
+   		}
+   			
+ td, th {
+    	background: whitesmoke; /* Цвет фона ячеек */
+   		padding: 5px; 		/* Поля вокруг текста */
+   		}
+
+img {
+	width: 50px;
+	height: 30px;
+	}
