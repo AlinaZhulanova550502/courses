@@ -1,0 +1,23 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>field</title>
+</head>
+<body>
+	<textarea id="text"></textarea>
+	<script>
+		
+	var email = document.getElementById("text");
+
+	email.addEventListener('keydown', function(e){
+	first=e.key.toString().match(/[^:;\^\?\!#'"\[\]\{\}=\\\/<>]/)
+	if (first==null) e.preventDefault();
+	else
+		{
+			second=first[0].match(/[a-z0-9.-_@]/)
+			if (second==null) e.preventDefault();
+		}
+});
+	</script>
+</body>
+</html>
