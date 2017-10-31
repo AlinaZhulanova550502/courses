@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<ol id="list" class="li">
+	<li>a</li>
+	<li>b</li>
+	<li>c</li>
+	<li>d</li>
+</ol>
+
+<script>
+str='<ul class="li"><li>a</li><li>b</li><li>c</li><li>d</li></ul>'
+
+var list = document.getElementById("list");
+list.addEventListener("click", function(e){
+	if (e.target.childNodes.length==1) e.target.innerHTML += str;
+	else 
+	{
+		e.target.removeChild(e.target.getElementsByClassName("li")[0]);
+		e.stopImmediatePropagation();
+	}
+});
+</script>
+
+</body>
+</html>
