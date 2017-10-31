@@ -1,0 +1,71 @@
+<html>
+	<title>menu</title>
+	<head>
+		<meta charset="utf-8">
+	</head>
+
+	<body>
+	<select id="sel" onmouseover=this.size=5></select>
+
+	<script>
+		document.oncontextmenu = function(){return false}; 	//запрет старого контекстного меню
+
+		one = function(e){alert("1"); e.stopImmediatePropagation()};		//обработчики пунктов меню
+		two =  function(e){alert("2"); e.stopImmediatePropagation()};
+		three = function(e){alert("3"); e.stopImmediatePropagation()};
+		four = function(e){alert("4"); e.stopImmediatePropagation()};
+		five = function(e){alert("5"); e.stopImmediatePropagation()};
+
+		var elem = new Object();
+		var sel = document.getElementById("sel");
+
+		var options = new Array('<option value="one">Первое</option>','<option value="two">Второе</option>','<option value="three">Третье</option>','<option value="four">Четвертое</option>','<option value="five">Пятое</option>');
+														//пункты меню
+
+		options.forEach(function(opt) {
+				sel.innerHTML += opt;
+			})
+
+		sel.style.display = "block";
+		var r = sel.getBoundingClientRect();
+		var wid = r.right-r.left; var hei = (r.bottom - r.top)*5;		//размеры меню
+		console.log("w: " + wid); console.log("h: " + hei); 
+		sel.style.display = "none";
+
+  		sel.addEventListener("click", function(e){			//обработка нажатия на меню
+  			console.log(e.target.value);
+  			switch (e.target.value)
+  			{
+  				case "one": one(e); break;
+  				case "two": two(e); break;
+  				case "three": three(e); break;
+  				case "four": four(e); break;
+  				case "five": five(e); break;
+  			}
+  			sel.style.display = "none";
+  		})
+
+		document.body.addEventListener("contextmenu", function(e){		//появление меню
+			var x = e.clientX; var y = e.clientY;
+			console.log("x: " + x); console.log("y: "+y);
+			console.log(document.body.clientWidth); console.log(document.body.clientHeight); 
+			if((x+wid>document.body.clientWidth) || (y+hei>document.body.clientHeight))
+			{
+				x = x - wid; y = y - hei;
+			}
+
+			sel.style.position = "absolute";
+			sel.style.top = y;
+			sel.style.left = x;
+
+			sel.style.display = "block";
+
+			document.body.addEventListener("click", function(){
+				if (document.getElementById("sel")!=null)
+					sel.style.display = "none";
+			})
+		})
+
+	</script>
+	</body>
+</html>

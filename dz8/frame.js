@@ -1,25 +1,21 @@
 var F = {
 	width: function(el)
 	{
-		wid = el.scrollWidth;
-		return wid;
+		r = el.getBoundingClientRect();
+		return Math.max(el.scrollWidth, r.width);
 	}
 	height: function(el)
 	{
-		hei = el.scrollHeight;
-		return hei;
+		r = el.getBoundingClientRect();
+		return Math.max(el.scrollHeight, r.height);
 	}
 	pageTop: function(el)
 	{
-		r = el.getBoundingClientRect();
-		top = r.top;
-		return top;
+		return el.offsetTop;
 	}
 	pageLeft: function(el)
 	{
-		r = el.getBoundingClientRect();
-		left = r.left;
-		return left;
+		return el.offsetLeft;
 	}
 	css: function(el, prop)
 	{
