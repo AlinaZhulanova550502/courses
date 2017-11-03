@@ -1,0 +1,171 @@
+
+
+#name{
+	position: absolute;
+	left: 130;
+}
+
+
+#bigdiv{
+	font-size: 0;
+}
+
+#bigdiv .item{
+	font-size: 12;
+	color: black;
+	background: seashell;	
+	display: inline-block;
+	width: 30%;
+	box-sizing: border-box;
+	margin:10px 1.5%;
+	min-height: 120px;
+}
+
+body{
+	background: seashell;
+}
+
+h1{
+	font-size: 40;
+	color: lightsalmon;
+}
+
+h2{
+	font-size: 32;
+	color: lightsalmon;
+	margin-left: 250px;
+	position: absolute; 
+  	top: 10px; 
+	left: 10px;
+}
+
+textarea{
+	font-size: 15;
+	background: seashell;
+	border-color: lightsalmon;
+	margin: 20px auto;
+	position: absolute; 
+}
+
+#from{
+	position: absolute; 
+	width: 100px;
+	height: 30px;
+	top: 150px; 
+  	left: 10px;
+}
+
+#to{
+	position: absolute; 
+	width: 100px;
+	height: 30px;
+	top: 200px; 
+  	left: 10px;
+}
+
+form{
+	position: relative;
+	font-family: Helvetica;
+	font-size: 13;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: darksalmon;
+	height: 80%;
+}
+
+button{
+	margin-left: 250px;
+}
+
+#bigdiv{
+	margin-left: 250px;
+	color: black;
+	width: 50%; 		/* Ширина таблицы */
+    background: lightsalmon;
+    color: lightsalmon; 		/* Цвет текста */
+    border-spacing: 2px; /* Расстояние между ячейками */
+}
+   			
+td, th {
+    background: seashell; /* Цвет фона ячеек */
+   	padding: 5px; 		/* Поля вокруг текста */
+}
+
+img {
+	margin-left: 30px;
+	width: 145px;
+	height: 100px;
+	}
+
+select{
+	background: seashell;
+	position: absolute; 
+  	top: 10px; 
+  	left: 10px;
+}
+
+#entrance{
+	position: absolute; 
+  	top: 60px; 
+  	left: 10px;
+}
+
+#exit{
+	position: absolute; 
+  	top: 80px; 
+  	left: 10px;
+}
+
+#entranceMark{
+	color: chocolate;
+	position: absolute; 
+  	top: 60px; 
+  	left: 30px;
+}
+
+#exitMark{
+	color: chocolate;
+	position: absolute; 
+  	top: 80px; 
+  	left: 30px;
+}
+
+#Time{
+	font-size: 32;
+	color: papayawhip;
+	position: absolute; 
+  	top: 10px; 
+  	left: 1000px;
+}
+
+#Date{
+	font-size: 32;
+	color: papayawhip;
+	position: absolute; 
+  	top: 50px; 
+	left: 1000px;
+}
+
+#pir{
+	height: 40px;
+	width: 40px;
+	position: absolute; 
+  	top: 300px; 
+	left: 30px;
+}
+
+#pagination{
+	position: absolute;
+	height: 30px;
+	width: 150px;
+	left: 440px;
+}
+
+.pag{
+	height: 20px;
+	width: 20px;
+	margin-top: 3px;
+	margin-left: 10px;
+	margin-right: 0px; 
+	margin-bottom: 0px;
+}

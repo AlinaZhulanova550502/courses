@@ -1,0 +1,43 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="cssTomain.css">
+		<title>ShopShop</title>
+	</head>
+	<body>
+	<div>
+		<h1>ShopShop</h1>
+		<h2>Магазин суперкрутых шмоточек</h2>
+	<form>
+		<select id="b">
+			<option value="all">все товары</option>
+		</select><Br>
+
+		<div id="bigdiv"></div>
+
+		<div id="Time"></div>
+		<div id="Date"></div>
+		<script src="script_Time.js"></script>
+
+		<div><textarea placeholder="Цена от" id="from"></textarea></div>
+		<div><textarea placeholder="Цена до" id="to"></textarea></div>
+
+		<form id="nameD"><textarea placeholder="Название товара" id="name"></textarea>
+			<button type="Button" id = "search">Поиск</button>
+		</form>
+
+
+		<form id = "pagination">
+			<button type="Button" class = "pag" id = "first"></button>
+			<button type="Button" class = "pag" id = "left"></button>
+			<button type="Button" class = "pag" id = "current"></button>
+			<button type="Button" class = "pag" id = "right"></button>
+			<button type="Button" class = "pag" id = "last"></button>
+		</form>
+	</form>
+	</div>
+
+	<script src = "market.js"></script>
+	 </body>
+</html>
