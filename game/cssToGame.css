@@ -1,0 +1,15 @@
+#tab{
+		width: 70%; 		/* Ширина таблицы */
+		height: 100%;
+   	}
+   			
+  td{
+    	background: white;
+    	width: 30px;
+    	height: 30px;
+   	}
+
+ img{
+ 		width: 30px;
+ 		height: 30px;
+ 	}
