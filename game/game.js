@@ -26,6 +26,8 @@ labyrinth.str25 = new Array(1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,
 labyrinth.str26 = new Array(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1);
 labyrinth.str27 = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1);
 
+container = document.getElementById("div");
+container.innerHTML = '<table id="tab"></table>';
 table = document.getElementById("tab");
 numStr = 1;												//номер строки
 for(var str in labyrinth)								//проход по строкам
@@ -46,7 +48,7 @@ for(var str in labyrinth)								//проход по строкам
 
 hero = document.createElement('div');
 hero.innerHTML = '<img id="hero" src="icon.png">';
-document.getElementById("[2].[2]").appendChild(hero);	//поставить героя на стартовую позицию
+document.getElementById("[1].[2]").appendChild(hero);	//поставить героя на стартовую позицию
 
 toRight = function(hero, labyrinth){
 	current = hero.parentElement;
@@ -93,4 +95,5 @@ window.addEventListener('keypress', function(e){
 		case 39: {toRight(hero, labyrinth); break;}	//стрелка вправо
 		case 91: {toDown(hero, labyrinth); break;}	//стрелка вниз
 	}
+	if (hero.parentElement.id == "[26].[25]") alert("You're winner!!");
 });
