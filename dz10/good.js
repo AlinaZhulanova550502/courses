@@ -19,7 +19,8 @@ good.prototype.showGood = function(){
   console.log(this.date); //!!!
 }
 
-goodFood.prototype = Object.create(good.prototype); 	// наследование от товара
+goodFood.prototype = good.prototype;   // наследование от товара
+//goodFood.prototype = Object.create(good.prototype); 	// наследование от товара
 
 function goodFood(name, type, price, year, month, date, year2, month2, date2){
   good.call(this, name, type, price, year, month, date);
