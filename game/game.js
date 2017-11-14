@@ -27,7 +27,8 @@ labyrinth.str26 = new Array(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 labyrinth.str27 = new Array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1);
 
 container = document.getElementById("div");
-container.innerHTML = '<table id="tab"></table>';
+container.innerText = "Для управления используйте клавиши [ -вверх; / - вниз; ' - вправо; ; - влево";
+container.innerHTML += '<table id="tab"></table>';
 table = document.getElementById("tab");
 numStr = 1;												//номер строки
 for(var str in labyrinth)								//проход по строкам
@@ -49,6 +50,14 @@ for(var str in labyrinth)								//проход по строкам
 hero = document.createElement('div');
 hero.innerHTML = '<img id="hero" src="icon.png">';
 document.getElementById("[1].[2]").appendChild(hero);	//поставить героя на стартовую позицию
+
+vampire = document.createElement('div');
+vampire.innerHTML = '<img id="vampire" src="vampire.png">';
+document.getElementById("[10].[24]").appendChild(vampire);	//поставить вампира на стартовую позицию
+
+ghost = document.createElement('div');
+ghost.innerHTML = '<img id="ghost" src="ghost.png">';
+document.getElementById("[20].[4]").appendChild(ghost);	//поставить призрака на стартовую позицию
 
 toRight = function(hero, labyrinth){
 	current = hero.parentElement;
@@ -97,3 +106,31 @@ window.addEventListener('keypress', function(e){
 	}
 	if (hero.parentElement.id == "[26].[25]") alert("You're winner!!");
 });
+
+chooseStepV = function(){
+	side = Math.random()*100;
+	if (side>15) toLeft(vampire, labyrinth);
+	else if (side>30) toUp(vampire, labyrinth);
+	else if (side>45) toRightRight(vampire, labyrinth);
+	else toDown(vampire, labyrinth);
+}
+
+chooseStepG = function(){
+	side = Math.random()*100;
+	if (side>15) toLeft(ghost, labyrinth);
+	else if (side>30) toUp(ghost, labyrinth);
+	else if (side>45) toRightRight(ghost, labyrinth);
+	else toDown(ghost, labyrinth);
+}
+
+danger = function(){
+	if ((hero.parentElement==vampire.parentElement) || (hero.parentElement==ghost.parentElement))
+	{
+		hero.innerHTML = '';
+		alert("Game over!");
+	}
+}
+
+setInterval(chooseStepG, 500);
+setInterval(chooseStepV, 500);
+setInterval(danger, 500);
