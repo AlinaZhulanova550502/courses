@@ -1,4 +1,15 @@
-var aud = document.getElementById("song");	//controls = "controls"
+var player = document.getElementById("player");
+choose = prompt("1-aud, 2-vid");
+if (choose==1) 
+	{
+		var aud = document.createElement("audio");
+		aud.src = "song.mp3"
+	}
+else if (choose==2) {
+	 	var aud = document.createElement("video");
+	 	aud.src = "vid.3gp"
+	}
+player.appendChild(aud);
 var flag = 0;
 var flagLoop = 0;
 
