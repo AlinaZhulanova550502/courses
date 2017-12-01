@@ -1,0 +1,16 @@
+#player{
+	width: 510px;
+	background: plum;
+	border-radius: 20px;
+	padding-left: 20px;
+	padding-top: 10px
+}
+
+img{
+	width: 50px;
+}
+
+button{
+	width: 40px;
+	height: 20px;
+}
