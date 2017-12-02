@@ -1,3 +1,30 @@
+#list{
+	position: relative;
+	width: 510px;
+	background: plum;
+	border-radius: 20px;
+}
+
+.service{
+	width: 50px;
+	height: 50px;
+	background: lavender;
+	border-radius: 20px;
+	margin-left: 5px;
+	margin-bottom: 10px;
+	margin-top: 10px
+}
+
+.icon{
+	width: 50px;
+}
+
+.play{
+	width: 40px;
+	height: 20px;
+}
+
+
 #player{
 	width: 510px;
 	background: plum;
@@ -6,11 +33,31 @@
 	padding-top: 10px
 }
 
-img{
-	width: 50px;
+.simg{
+	width: 30px;
 }
 
-button{
-	width: 40px;
+#progressContainer{
+	position: relative;
+	margin-left: 10px;
+	width: 400px;
 	height: 20px;
+	background: white;
+}
+
+.progress{
+	height: 20px;
+	background: lavender;
+}
+
+#time{
+	position: absolute;
+	left: 445px;
+	top: 20px;
+}
+
+#timeAll{
+	position: absolute;
+	left: 480px;
+	top: 20px;
 }
