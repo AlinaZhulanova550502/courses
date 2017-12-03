@@ -1,4 +1,4 @@
-var bPlay = document.getElementById("play");
+var bPlay = document.getElementById("playy");
 var bStop = document.getElementById("stop");
 var bNext = document.getElementById("next");
 var bBack = document.getElementById("back");
@@ -8,11 +8,10 @@ var divTimeAll = document.getElementById("timeAll");
 var divTime = document.getElementById("time");
 var volume = document.getElementById("volume");
 
-divCont.innerHTML += '<div class="progress"></div>';
-var divProgr = document.getElementsByClassName("progress");
-//var divProgr = document.createElement("div");
-//divCont.appendChild(divProgr);
-//divProgr.classList.add("progress");
+divCont.innerHTML += '<div></div>';
+var divProgr = document.createElement("div");
+divCont.appendChild(divProgr);
+divProgr.classList.add("progress");
 
 var list = document.getElementById("list");
 var buts; var auds;
@@ -88,12 +87,12 @@ bPlay.addEventListener("click", function(){
 	if (flag==1) {
 		aud.pause();
 		flag=0;
-		this.innerHTML = "<img src='play.png'>";
+		this.innerHTML = "<img class='simg' src='play.png'>";
 	}
 	else {
 		aud.play();
 		flag=1;
-		this.innerHTML = "<img src='pause.png'>";
+		this.innerHTML = "<img class='simg' src='pause.png'>";
 	}
 })
 
